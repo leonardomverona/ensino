@@ -5,66 +5,106 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Edificando - (13/04/2025)</title>
   <style>
+    :root {
+      --bg-color: #121212;
+      --text-color: #e0e0e0;
+      --card-bg: #1e1e1e;
+      --border-color: #333;
+      --highlight: #0d6efd;
+      --summary-bg: #2c2c2c;
+    }
+
+    .light-theme {
+      --bg-color: #ffffff;
+      --text-color: #222222;
+      --card-bg: #f4f4f4;
+      --border-color: #cccccc;
+      --highlight: #0d6efd;
+      --summary-bg: #e0e0e0;
+    }
+
     body {
       font-family: 'Segoe UI', sans-serif;
       margin: 2rem;
-      background-color: #f9f9f9;
-      color: #333;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background-color 0.3s, color 0.3s;
     }
+
     h1, h2, h3 {
-      color: #004080;
+      color: var(--highlight);
     }
+
     .section {
       margin-bottom: 2rem;
     }
+
     textarea {
       width: 100%;
       height: 120px;
       margin-top: 0.5rem;
       padding: 10px;
       font-size: 1rem;
-      border: 1px solid #ccc;
+      background-color: var(--summary-bg);
+      color: var(--text-color);
+      border: 1px solid var(--border-color);
       border-radius: 6px;
       resize: vertical;
     }
+
     .box {
-      background: #ffffff;
-      border: 1px solid #ccc;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
       border-radius: 8px;
       padding: 1.5rem;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
+
     button {
-      background-color: #004080;
+      background-color: var(--highlight);
       color: white;
-      padding: 12px 20px;
+      padding: 10px 16px;
       font-size: 1rem;
       border: none;
       border-radius: 6px;
       cursor: pointer;
-      margin-top: 2rem;
+      margin: 10px 0;
     }
+
     button:hover {
-      background-color: #003366;
+      background-color: #0a58ca;
     }
+
+    .top-buttons {
+      display: flex;
+      justify-content: flex-end;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
     details summary {
       font-weight: bold;
       cursor: pointer;
       margin-bottom: 1rem;
-      background-color: #e9ecef;
+      background-color: var(--summary-bg);
       padding: 10px;
       border-radius: 6px;
     }
+
     details {
       margin-bottom: 2rem;
-      background-color: #ffffff;
-      border: 1px solid #ccc;
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
       border-radius: 6px;
       padding: 10px;
     }
   </style>
 </head>
-<body>
+<body class="dark-theme">
+
+  <div class="top-buttons">
+    <button onclick="alternarTema()">🌗 Alternar Tema</button>
+  </div>
 
   <h1>📝 Edificando </h1>
   <h2>Semana: 13/04/2025</h2>
@@ -154,6 +194,10 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script>
+    function alternarTema() {
+      document.body.classList.toggle("light-theme");
+    }
+
     async function gerarPDF() {
       const { jsPDF } = window.jspdf;
       const doc = new jsPDF();

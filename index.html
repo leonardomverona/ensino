@@ -1,234 +1,275 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Edificando - (13/04/2025)</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cosmovisão Cristã — Estudo Completo</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg-color: #121212;
-      --text-color: #e0e0e0;
-      --card-bg: #1e1e1e;
-      --border-color: #333;
-      --highlight: #0d6efd;
-      --summary-bg: #2c2c2c;
-    }
-
-    .light-theme {
-      --bg-color: #ffffff;
-      --text-color: #222222;
-      --card-bg: #f4f4f4;
-      --border-color: #cccccc;
-      --highlight: #0d6efd;
-      --summary-bg: #e0e0e0;
-    }
-
     body {
-      font-family: 'Segoe UI', sans-serif;
-      margin: 2rem;
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      transition: background-color 0.3s, color 0.3s;
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #f9f9f9;
+      color: #333;
+      transition: background 0.4s, color 0.4s;
     }
-
-    h1, h2, h3 {
-      color: var(--highlight);
+    .dark-mode {
+      background: #121212;
+      color: #e0e0e0;
     }
-
-    .section {
-      margin-bottom: 2rem;
+    header {
+      text-align: center;
+      margin-bottom: 30px;
     }
-
+    h1 {
+      font-size: 28px;
+    }
+    h3 {
+      margin-top: 5px;
+      font-weight: 400;
+      color: #555;
+    }
+    .dark-mode h3 {
+      color: #ccc;
+    }
+    button, a.button-link {
+      margin: 5px;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 6px;
+      border: none;
+      background: #007bff;
+      color: white;
+      text-decoration: none;
+      display: inline-block;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover, a.button-link:hover {
+      background: #0056b3;
+    }
+    .dark-mode button, .dark-mode a.button-link {
+      background: #333;
+      color: #eee;
+    }
+    section {
+      margin-bottom: 40px;
+    }
+    h2 {
+      border-bottom: 2px solid #ccc;
+      padding-bottom: 5px;
+      margin-top: 40px;
+    }
     textarea {
       width: 100%;
       height: 120px;
-      margin-top: 0.5rem;
+      margin-top: 10px;
       padding: 10px;
-      font-size: 1rem;
-      background-color: var(--summary-bg);
-      color: var(--text-color);
-      border: 1px solid var(--border-color);
+      font-size: 14px;
       border-radius: 6px;
-      resize: vertical;
+      border: 1px solid #ccc;
+      background: #fff;
+      color: #333;
+      transition: background 0.3s, color 0.3s;
     }
-
-    .box {
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 8px;
-      padding: 1.5rem;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    .dark-mode textarea {
+      background: #1e1e1e;
+      color: #ccc;
+      border: 1px solid #555;
     }
-
-    button {
-      background-color: var(--highlight);
-      color: white;
-      padding: 10px 16px;
-      font-size: 1rem;
+    .accordion {
+      background: #eee;
+      color: #333;
+      cursor: pointer;
+      padding: 12px;
+      width: 100%;
       border: none;
+      text-align: left;
+      outline: none;
+      font-size: 16px;
+      margin-top: 10px;
       border-radius: 6px;
-      cursor: pointer;
-      margin: 10px 0;
+      transition: background 0.3s;
     }
-
-    button:hover {
-      background-color: #0a58ca;
+    .active, .accordion:hover {
+      background: #ccc;
     }
-
-    .top-buttons {
-      display: flex;
-      justify-content: flex-end;
-      gap: 1rem;
-      margin-bottom: 1rem;
+    .dark-mode .accordion {
+      background: #333;
+      color: #eee;
     }
-
-    details summary {
-      font-weight: bold;
-      cursor: pointer;
-      margin-bottom: 1rem;
-      background-color: var(--summary-bg);
-      padding: 10px;
+    .dark-mode .active, .dark-mode .accordion:hover {
+      background: #444;
+    }
+    .panel {
+      padding: 0 15px;
+      display: none;
+      background: #f1f1f1;
+      overflow: hidden;
+      margin-top: 5px;
       border-radius: 6px;
     }
-
-    details {
-      margin-bottom: 2rem;
-      background-color: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 6px;
-      padding: 10px;
+    .dark-mode .panel {
+      background: #1e1e1e;
     }
   </style>
 </head>
-<body class="dark-theme">
 
-  <div class="top-buttons">
-    <button onclick="alternarTema()">🌗 Alternar Tema</button>
-  </div>
+<body>
 
-  <h1>📝 Edificando </h1>
-  <h2>Semana: 13/04/2025</h2>
-  <p><strong>Texto Base:</strong> 2 Coríntios 5.11-17 (RA)</p>
-  <p><strong>Tema:</strong> A Hora é Agora</p>
+<header>
+  <h1>Cosmovisão Cristã — Estudo e Anotações</h1>
+  <h3>Palestrante: Leonardo Verona</h3>
+  <button onclick="toggleDarkMode()">Modo Claro/Escuro</button>
+  <button onclick="generatePDF()">Gerar PDF</button>
+  <a href="https://gitmind.com/app/docs/m8f6m21f" target="_blank" class="button-link">Ver Mapa Mental no GitMind</a>
+</header>
 
-  <details>
-    <summary>📖 Clique para ler o texto bíblico: 2 Coríntios 5.11-17 (RA)</summary>
-    <p><strong>11</strong> E assim, conhecendo o temor do Senhor, persuadimos os homens, mas somos plenamente conhecidos por Deus; e espero que também sejamos reconhecidos na vossa consciência.<br>
-    <strong>12</strong> Não nos recomendamos, novamente, a vós outros; pelo contrário, damos-vos ensejo de vos gloriardes de nós, para que tenhais o que responder aos que se gloriam na aparência e não no coração.<br>
-    <strong>13</strong> Porque, se enlouquecemos, é para Deus; e, se conservamos o juízo, é para vós outros.<br>
-    <strong>14</strong> Pois o amor de Cristo nos constrange, julgando nós isto: um morreu por todos; logo, todos morreram.<br>
-    <strong>15</strong> E ele morreu por todos, para que os que vivem não vivam mais para si mesmos, mas para aquele que por eles morreu e ressuscitou.<br>
-    <strong>16</strong> Assim que nós, daqui por diante, a ninguém conhecemos segundo a carne; e, se antes conhecemos Cristo segundo a carne, já agora não o conhecemos deste modo.<br>
-    <strong>17</strong> E, assim, se alguém está em Cristo, é nova criatura; as coisas antigas já passaram; eis que se fizeram novas.</p>
-  </details>
+<main id="content">
 
-  <div class="section box">
-    <h3>✨ Introdução</h3>
-    <p>
-      Terminamos a nossa conferência missionária refletindo sobre a necessidade
-      de termos coragem para pregar o Evangelho. Em 2 Coríntios, Paulo defende o
-      seu ministério e também fala aquilo que o encoraja a pregar o Evangelho.
-      Suas motivações se tornam para nós um exemplo.
-    </p>
-    <p><strong>Após leitura do texto base, respondam as perguntas:</strong></p>
-  </div>
+<section>
+<h2>Definição e Conceito</h2>
+<button class="accordion">Citação: James W. Sire</button>
+<div class="panel">
+<p>"Uma cosmovisão é um compromisso, uma orientação fundamental do coração, que pode ser expressa como uma narrativa ou em um conjunto de pressuposições (suposições que podem ser verdadeiras, parcialmente verdadeiras ou inteiramente falsas), que nós sustentamos (consciente ou subconscientemente, de forma consistente ou inconsistente) sobre a constituição básica da realidade e que fornece o fundamento sobre o qual nós vivemos, nos movemos e existimos." <em>(James W. Sire, Dando Nome ao Elefante, 2006)</em></p>
+</div>
 
-  <div class="section box">
-    <h3>❓ Pergunta 1</h3>
-    <p>
-      O Catecismo de Heidelberg declara sobre o Porque somos chamados cristãos:
-      “Porque pela fé sou membro de Cristo e, por isso, também sou ungido para
-      ser profeta, sacerdote e rei.” (pergunta 32).
-    </p>
-    <p> Diante desta realidade, é necessário um chamado missionário para pregar o Evangelho? Quem possui esse chamado?</p>
-    <textarea placeholder="Sua resposta..."></textarea>
-  </div>
+<button class="accordion">Texto Bíblico: Provérbios 4:23</button>
+<div class="panel">
+<p>"Sobre tudo o que se deve guardar, guarda o teu coração, porque dele procedem as fontes da vida."</p>
+</div>
 
-  <div class="section box">
-    <h3>❓ Pergunta 2</h3>
-    <p>
-      De que modo o temor dos homens pode nos impedir de pregar o evangelho?
-      Como o temor de Deus nos orienta a vencer este empecilho?
-    </p>
-    <textarea placeholder="Sua resposta..."></textarea>
-  </div>
+<ul>
+<li>Função hermenêutica: Interpretar a realidade</li>
+<li>Função ontológica: Definir o que é real</li>
+<li>Função religiosa: Orientar o coração</li>
+</ul>
+<textarea placeholder="Anotações..."></textarea>
+</section>
 
-  <div class="section box">
-    <h3>❓ Pergunta 3</h3>
-    <p>
-      Paulo afirma que o amor de Cristo nos constrange, ou nos domina. Esse amor
-      foi demonstrado a nós por sua morte na Cruz.
-    </p>
-    <p>Como o Amor de Cristo por nós nos encoraja a pregar o evangelho?</p>
-    <textarea placeholder="Sua resposta..."></textarea>
-  </div>
+<section>
+<h2>As 7 Perguntas Fundamentais</h2>
+<ul>
+<li>O que é verdadeiramente real?</li>
+<li>Como a realidade externa se relaciona com a realidade última?</li>
+<li>O que é o ser humano?</li>
+<li>O que acontece após a morte?</li>
+<li>É possível conhecer a verdade?</li>
+<li>Como sabemos o que é certo ou errado?</li>
+<li>Existe sentido para a história?</li>
+</ul>
+<textarea placeholder="Anotações..."></textarea>
+</section>
 
-  <div class="section box">
-    <h3>❓ Pergunta 4</h3>
-    <p>
-      De modo prático, como você pode se envolver mais com a obra missionária no seu dia-a-dia?
-      Pense nesse envolvimento tanto de modo local como se envolvendo com missões ao redor do mundo.
-    </p>
-    <textarea placeholder="Sua resposta..."></textarea>
-  </div>
+<section>
+<h2>História do Conceito</h2>
+<h3>História Secular</h3>
+<ul>
+<li><strong>Kant</strong>: A mente organiza a experiência.</li>
+<li><strong>Dilthey</strong>: Cada cultura molda suas visões de mundo.</li>
+<li><strong>Nietzsche</strong>: Vontade de poder sem verdades objetivas.</li>
+<li><strong>Wittgenstein</strong>: Linguagem cria realidades.</li>
+<li><strong>Foucault</strong>: Conhecimento é poder.</li>
+</ul>
 
-  <div class="section box">
-    <h3>🏁 Conclusão</h3>
-    <p>
-      Somos chamados a pregar o evangelho e a participar da missão de Deus no mundo.
-      Cada encontro que temos com alguém descrente deveria ser uma oportunidade para
-      compartilhar as boas novas do Jesus que te salvou.
-    </p>
-    <p><strong>Você está preparado?</strong> A Hora é agora!</p>
-  </div>
+<h3>Desenvolvimento Cristão</h3>
+<ul>
+<li><strong>James Orr</strong>: Base racional sistemática cristã.</li>
+<li><strong>Abraham Kuyper</strong>: "Cristo clama: É meu!"</li>
+<li><strong>Herman Dooyeweerd</strong>: Coração como centro religioso da existência.</li>
+<li><strong>David Naugle</strong>: Integração entre ontologia, hermenêutica e narrativa.</li>
+</ul>
+<textarea placeholder="Anotações..."></textarea>
+</section>
 
-  <div class="section box">
-    <h3>📅 Avisos</h3>
-    <ul>
-      <li><strong>20/04 – Café da Ressurreição às 09:00</strong> – Convide alguém para ouvir o evangelho. Leve um quitute.</li>
-      <li><strong>20/04 – Cantata de Páscoa às 19h</strong></li>
-    </ul>
-  </div>
+<section>
+<h2>Cosmovisão Cristã</h2>
+<button class="accordion">Texto Bíblico: Gênesis 1:31</button>
+<div class="panel">
+<p>"Viu Deus tudo quanto fizera, e eis que era muito bom."</p>
+</div>
 
-  <button onclick="gerarPDF()">📄 Baixar PDF</button>
+<button class="accordion">Texto Bíblico: Colossenses 1:20</button>
+<div class="panel">
+<p>"E que, havendo feito a paz pelo sangue da sua cruz, reconciliar consigo mesmo todas as coisas."</p>
+</div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <script>
-    function alternarTema() {
-      document.body.classList.toggle("light-theme");
+<button class="accordion">Texto Bíblico: Apocalipse 21:1</button>
+<div class="panel">
+<p>"Vi novo céu e nova terra, pois o primeiro céu e a primeira terra passaram."</p>
+</div>
+
+<textarea placeholder="Anotações..."></textarea>
+</section>
+
+<section>
+<h2>Dualismos na História Ocidental</h2>
+<ul>
+<li>Matéria/Forma — Platão (desprezo pelo mundo material)</li>
+<li>Natureza/Graça — Escolástica (separação entre razão e fé)</li>
+<li>Natureza/Liberdade (mecanização da natureza, liberdade sem lei)</li>
+<li>Razão/Fé (salto irracional de fé)</li>
+</ul>
+<textarea placeholder="Anotações..."></textarea>
+</section>
+
+<section>
+<h2>Importância na Pós-Modernidade</h2>
+<ul>
+<li>Avaliação crítica das crenças.</li>
+<li>Entendimento das narrativas culturais.</li>
+<li>Ferramenta para evangelismo e apologética.</li>
+</ul>
+
+<button class="accordion">Texto Bíblico: João 14:6</button>
+<div class="panel">
+<p>"Eu sou o caminho, e a verdade, e a vida; ninguém vem ao Pai senão por mim."</p>
+</div>
+
+<textarea placeholder="Anotações..."></textarea>
+</section>
+
+<section>
+<h2>Aplicações Práticas</h2>
+<ul>
+<li>Impacto nos relacionamentos pessoais e sociais.</li>
+<li>Influência na cultura, educação, política e economia.</li>
+<li>Participação ativa na obra redentora de Deus.</li>
+</ul>
+
+<button class="accordion">Texto Bíblico: Colossenses 3:23</button>
+<div class="panel">
+<p>"Tudo quanto fizerdes, fazei-o de todo o coração, como para o Senhor."</p>
+</div>
+
+<textarea placeholder="Anotações..."></textarea>
+</section>
+
+</main>
+
+<script>
+function toggleDarkMode() {
+  document.body.classList.toggle('dark-mode');
+}
+function generatePDF() {
+  const element = document.getElementById('content');
+  html2pdf().from(element).save('cosmovisao_estudo.pdf');
+}
+var acc = document.getElementsByClassName("accordion");
+for (let i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.display === "block") {
+      panel.style.display = "none";
+    } else {
+      panel.style.display = "block";
     }
-
-    async function gerarPDF() {
-      const { jsPDF } = window.jspdf;
-      const doc = new jsPDF();
-      const textareas = document.querySelectorAll("textarea");
-      let y = 10;
-
-      doc.setFont("helvetica", "normal");
-      doc.setFontSize(16);
-      doc.text("Edificando – Versão do Aluno", 10, y);
-      y += 10;
-      doc.setFontSize(12);
-      doc.text("Semana: 13/04/2025 | Texto Base: 2 Coríntios 5.11-17", 10, y);
-      y += 10;
-
-      textareas.forEach((ta, i) => {
-        const pergunta = ta.previousElementSibling?.textContent?.trim() || `Pergunta ${i + 1}`;
-        const resposta = ta.value || "(sem resposta)";
-        const linhas = doc.splitTextToSize(`${pergunta}\n${resposta}`, 180);
-
-        if (y + linhas.length * 10 > 280) {
-          doc.addPage();
-          y = 10;
-        }
-
-        doc.text(linhas, 10, y);
-        y += linhas.length * 10 + 5;
-      });
-
-      doc.save("Edificando_Aluno_13Abr2025.pdf");
-    }
-  </script>
+  });
+}
+</script>
 
 </body>
 </html>
